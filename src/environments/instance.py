@@ -1,6 +1,6 @@
 import os
 
-env = os.environ.get("MONITOR_ENV", "dev")
+env = os.environ.get("MONITORAPP_ENV", "dev")
 port = os.environ.get("PORT", 8080)
 
 env_list = {
