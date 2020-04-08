@@ -8,19 +8,19 @@ env_list = {
             "debug": True,
             "swagger-url": "/api/swagger",
             "signal_api_key": "sandbox",
-            "signal_api_base_url": "https://postb.in/1571626913820-2904260861687"
+            "signal_api_base_url": "https://postb.in/1586309201171-9752708950545"
             },
     "qa": {"port": port,
            "debug": True,
            "swagger-url": "/api/swagger",
            "signal_api_key": "sandbox",
-           "signal_api_base_url": "https://postb.in/1571626913820-2904260861687"
+           "signal_api_base_url": "https://postb.in/1586309201171-9752708950545"
            },
     "prod": {"port": port,
              "debug": False,
              "swagger-url": None,
              "signal_api_key": "sandbox",
-             "signal_api_base_url": "https://postb.in/1571626913820-2904260861687"
+             "signal_api_base_url": "https://postb.in/1586309201171-9752708950545"
              }
 }
 
