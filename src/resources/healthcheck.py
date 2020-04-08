@@ -6,7 +6,7 @@ from flask_restplus import Api, Resource, fields, marshal
 
 from server.instance import server
 from models.healthcheck import healthcheck
-from models.signalfxevent import signalfxevent
+from models.signalevent import signalevent
 from environments.instance import env_config
 from environments.instance import env
 
@@ -19,10 +19,10 @@ class EC2Checks(Resource):
     @api.expect(healthcheck, validate=True)
     @api.marshal_with(healthcheck)
     def post(self):
-        signalfx_event = self.translate_to_signalfxevent(api.payload)
-        return api.payload, self.send_event(signalfx_event)
+        signal_event = self.translate_to_signalevent(api.payload)
+        return api.payload, self.send_event(signal_event)
 
-    def translate_to_signalfxevent(self, healthcheck):
+    def translate_to_signalevent(self, healthcheck):
         signaleventdata = {
             'category': "USER_DEFINED",
             'eventType': healthcheck['id'],
@@ -33,12 +33,12 @@ class EC2Checks(Resource):
             'properties': '',
             'timestamp': datetime.datetime.now()
         }
-        eventObject = marshal(signaleventdata, signalfxevent)
+        eventObject = marshal(signaleventdata, signalevent)
         return eventObject
 
     def send_event(self, data):
-        api_token = env_config["signalfx_api_key"]
-        api_url_base = env_config["signalfx_api_base_url"]
+        api_token = env_config["signal_api_key"]
+        api_url_base = env_config["signal_api_base_url"]
         headers = {'Content-Type': 'application/json',
                    'X-SF-TOKEN': '{0}'.format(api_token)}
 

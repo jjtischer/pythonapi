@@ -2,11 +2,11 @@
 This is a simple Python utilities API.
 
 #Responsibilities
-- Accept a POST request from our internal service and translate this into a new SignalFX event
+- Accept a POST request from our internal service and translate this into a new signal event
 
 #Requirements 
 - Correctly accept a POST request from our internal health service
-- Correctly POST a new event to SignalFX (https://developers.signalfx.com/ingest_data_reference.html)
+- Correctly POST a new event to signal (https://developers.signal.com/ingest_data_reference.html)
 - Run as a Docker container
 - is Unit Tested
 - has a build tool

@@ -6,7 +6,7 @@ import requests_mock
 from flask_restplus import Api, Resource, fields, marshal
 from resources.healthcheck import *
 from models.healthcheck import healthcheck
-from models.signalfxevent import signalfxevent
+from models.signalevent import signalevent
 from environments.instance import env_config
 
 
@@ -25,12 +25,12 @@ def test_post_healthcheck(client):
 
     ec2checks = EC2Checks()
     with requests_mock.Mocker() as m:
-        m.post(env_config["signalfx_api_base_url"], text='mock', status_code=200)
+        m.post(env_config["signal_api_base_url"], text='mock', status_code=200)
         assert ec2checks.send_event(data) == 200
 
 
 
-def test_translate_to_signalfxevent(client):
+def test_translate_to_signalevent(client):
     data = {
         'id': 'i-0085a516efcc628d6',
         'description': 'Python for Dummies'
@@ -38,5 +38,5 @@ def test_translate_to_signalfxevent(client):
 
     eventObject = marshal(data, healthcheck)
     ec2checks = EC2Checks()
-    customsignalevent = ec2checks.translate_to_signalfxevent(eventObject)
+    customsignalevent = ec2checks.translate_to_signalevent(eventObject)
     assert customsignalevent['eventType'] == data['id']
